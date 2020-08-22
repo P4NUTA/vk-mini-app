@@ -7,46 +7,55 @@ import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
-import Epictab from "./Epictab";
 
-const Home = ({ id, go, fetchedUser }) => (
-	<Panel id={id}>
-		<PanelHeader>Title</PanelHeader>
-		{fetchedUser &&
-		<Group title="User Data Fetched with VK Bridge">
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
 
-		<Group title="Navigation Example">
-			<Div>
-				<Button size="xl" level="2" onClick={go} data-to="main">
-					Main page
-				</Button>
-				<Button size="xl" level="2" onClick={go} data-to="categories">
-					Categories page
-				</Button>
-			</Div>
-		</Group>
-		<Epictab/>
-	</Panel>
-);
+        this.state = {};
+    }
+
+    render() {
+        return <Panel id={this.props.id}>
+            <PanelHeader>Title</PanelHeader>
+            {this.props.user &&
+            <Group title="User Data Fetched with VK Bridge">
+                <Cell
+                    before={this.props.user.photo_200 ? <Avatar src={this.props.user.photo_200}/> : null}
+                    description={this.props.user.city && this.props.user.city.title ? this.props.user.city.title : ''}
+                >
+                    {`${this.props.user.first_name} ${this.props.user.last_name}`}
+                </Cell>
+            </Group>}
+
+            <Group title="Navigation Example">
+                <Div>
+                    <Button size="xl" level="2" onClick={this.props.go} data-to="main">
+                        Main page
+                    </Button>
+                </Div>
+                <Div>
+                    <Button mode="outline" size="xl" level="2" onClick={this.props.go} data-to="categories">
+                        Categories page
+                    </Button>
+                </Div>
+            </Group>
+        </Panel>
+    }
+}
+
 
 Home.propTypes = {
-	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	fetchedUser: PropTypes.shape({
-		photo_200: PropTypes.string,
-		first_name: PropTypes.string,
-		last_name: PropTypes.string,
-		city: PropTypes.shape({
-			title: PropTypes.string,
-		}),
-	}),
+    id: PropTypes.string.isRequired,
+    go: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+        photo_200: PropTypes.string,
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        city: PropTypes.shape({
+            title: PropTypes.string,
+        }),
+    }),
 };
 
 export default Home;

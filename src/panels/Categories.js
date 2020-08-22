@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {platform, IOS,  List, Search, Cell} from '@vkontakte/vkui';
+import {Cell, IOS, List, platform} from '@vkontakte/vkui';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
 import PanelHeaderButton from '@vkontakte/vkui/dist/components/PanelHeaderButton/PanelHeaderButton';
@@ -9,7 +9,6 @@ import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
 import Icon24Back from '@vkontakte/icons/dist/24/back';
 import './Main.css';
 
-import Epictab from "./Epictab";
 const osName = platform();
 const thematics = [
     {id: 1, name: "PS4"},
@@ -24,23 +23,31 @@ const thematics = [
     {id: 10, name: "Другое"},
 ];
 
-const Categories = (props) => (
-    <Panel id={props.id}>
-        <PanelHeader
-            left={<PanelHeaderButton onClick={props.go} data-to="home">
-                {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-            </PanelHeaderButton>}
-        >
-            Categories
-        </PanelHeader>
-        {thematics.length > 0 &&
-        <List>
-            {thematics.map(thematic => <Cell key={thematic.id}>{thematic.name}</Cell>)}
-        </List>
-        }
-        <Epictab/>
-    </Panel>
-);
+class Categories extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+    }
+
+    render() {
+        return <Panel id={this.props.id}>
+            <PanelHeader
+                left={<PanelHeaderButton onClick={this.props.go} data-to="home">
+                    {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
+                </PanelHeaderButton>}
+            >
+                Categories
+            </PanelHeader>
+            {
+                thematics.length > 0 &&
+                <List>
+                    {thematics.map(thematic => <Cell key={thematic.id}>{thematic.name}</Cell>)}
+                </List>
+            }
+        </Panel>
+    }
+}
 
 Categories.propTypes = {
     id: PropTypes.string.isRequired,
