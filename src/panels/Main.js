@@ -1,17 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card, CardScroll, Group, IOS, platform} from '@vkontakte/vkui';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import PanelHeaderButton from '@vkontakte/vkui/dist/components/PanelHeaderButton/PanelHeaderButton';
-import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
-import Header from "@vkontakte/vkui/dist/components/Header/Header";
+import {Card, CardScroll, Group, Header, Panel, PanelHeader, PanelHeaderBack} from '@vkontakte/vkui';
 
-import Icon24Back from '@vkontakte/icons/dist/24/back';
-import './Main.css';
-
-const osName = platform();
-
+import '../styles/Main.css';
 
 class Main extends React.Component {
     constructor(props) {
@@ -22,11 +13,7 @@ class Main extends React.Component {
 
     render() {
         return <Panel id={this.props.id}>
-            <PanelHeader
-                left={<PanelHeaderButton onClick={this.props.go} data-to="home">
-                    {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-                </PanelHeaderButton>}
-            >
+            <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home"/>}>
                 Main
             </PanelHeader>
             <Group separator="hide" header={<Header mode="secondary">Новинки</Header>}>

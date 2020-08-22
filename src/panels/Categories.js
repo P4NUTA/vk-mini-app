@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Cell, IOS, List, platform} from '@vkontakte/vkui';
-import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import PanelHeaderButton from '@vkontakte/vkui/dist/components/PanelHeaderButton/PanelHeaderButton';
-import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
+import {Cell, List, Panel, PanelHeader, PanelHeaderBack} from '@vkontakte/vkui';
 
-import Icon24Back from '@vkontakte/icons/dist/24/back';
-import './Main.css';
+import '../styles/Main.css';
 
-const osName = platform();
 const thematics = [
     {id: 1, name: "PS4"},
     {id: 2, name: "PS3"},
@@ -32,11 +26,7 @@ class Categories extends React.Component {
 
     render() {
         return <Panel id={this.props.id}>
-            <PanelHeader
-                left={<PanelHeaderButton onClick={this.props.go} data-to="home">
-                    {osName === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-                </PanelHeaderButton>}
-            >
+            <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home"/>}>
                 Categories
             </PanelHeader>
             {
