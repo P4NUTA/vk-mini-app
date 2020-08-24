@@ -9,34 +9,36 @@ import {
     Header,
     Panel,
     PanelHeader,
-    Placeholder,
     Switch,
     Tabbar,
     TabbarItem,
     View,
-    ScreenSpinner
+    ScreenSpinner,
+    List,
+    CardScroll,
+    Card,
+    Search,
+    Alert,
+    HorizontalScroll,
 } from "@vkontakte/vkui";
 
-import Icon28ArticleOutline from '@vkontakte/icons/dist/28/article_outline';
-import Icon28HomeOutline from '@vkontakte/icons/dist/28/home_outline';
-import Icon28SettingsOutline from '@vkontakte/icons/dist/28/settings_outline';
-import Icon56UsersOutline from '@vkontakte/icons/dist/56/users_outline';
-
-import Home from './panels/Home';
-import Main from './panels/Main';
-import Categories from './panels/Categories';
+import Icon28AllCategoriesOutline from '@vkontakte/icons/dist/28/all_categories_outline';
+import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
+import Icon28Search from '@vkontakte/icons/dist/28/search';
+import Icon28More from '@vkontakte/icons/dist/28/more';
 
 import '@vkontakte/vkui/dist/vkui.css';
+import {Thematics, Games, NewGames} from "./objects/Static";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            activeStory: 'home',
-            activePanel: 'home',
+            activeStory: 'main',
+            activePanel: 'main',
             user: null,
-            popout: <ScreenSpinner size='large' />,
+            popout: <ScreenSpinner size='large'/>,
         };
 
         this.go = this.go.bind(this);
@@ -51,7 +53,6 @@ class App extends React.Component {
                 schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
                 document.body.attributes.setNamedItem(schemeAttribute);
                 this.setState({themeName: schemeAttribute.value});
-
             } else if (type === 'VKWebAppGetUserInfoResult') {
                 this.setUser(data);
                 this.setPopout(null);
@@ -86,41 +87,125 @@ class App extends React.Component {
             <Tabbar>
                 <TabbarItem
                     onClick={this.onStoryChange}
-                    selected={this.state.activeStory === 'home'}
-                    data-story="home"
-                    text="Дом"
-                ><Icon28HomeOutline/></TabbarItem>
-                <TabbarItem
-                    onClick={this.onStoryChange}
                     selected={this.state.activeStory === 'main'}
                     data-story="main"
-                    text="Главная"
-                ><Icon28ArticleOutline/></TabbarItem>
+                    text="Главная">
+                    <Icon28Newsfeed/>
+                </TabbarItem>
+                <TabbarItem
+                    onClick={this.onStoryChange}
+                    selected={this.state.activeStory === 'categories'}
+                    data-story="categories"
+                    text="Категории">
+                    <Icon28AllCategoriesOutline/>
+                </TabbarItem>
+                <TabbarItem
+                    onClick={this.onStoryChange}
+                    selected={this.state.activeStory === 'search'}
+                    data-story="search"
+                    text="Поиск">
+                    <Icon28Search/>
+                </TabbarItem>
                 <TabbarItem
                     onClick={this.onStoryChange}
                     selected={this.state.activeStory === 'settings'}
                     data-story="settings"
-                    text="Настройки"
-                ><Icon28SettingsOutline/></TabbarItem>
+                    text="Настройки">
+                    <Icon28More/>
+                </TabbarItem>
             </Tabbar>
         }>
-            <View id="home" activePanel={this.state.activePanel} popout={this.state.popout}>
-                <Home id='home' user={this.state.user} go={this.go}/>
-                <Main id='main' go={this.go}/>
-                <Categories id='categories' go={this.go}/>
-            </View>
-            <View id="main" activePanel="main">
+            <View id="main" activePanel={this.state.activePanel}>
                 <Panel id="main">
-                    <PanelHeader>Главная</PanelHeader>
-                    <Group>
-                        <Placeholder
-                            icon={<Icon56UsersOutline/>}
-                            header="Уведомления от сообществ"
-                            action={<Button size="l">Подключить сообщества</Button>}
-                        >
-                            Подключите сообщества, от которых Вы хотите получать уведомления
-                        </Placeholder>
+                    <PanelHeader>GamePark</PanelHeader>
+                    <Group separator="hide" header={<Header mode="secondary">Предзаказ</Header>}>
+                        {NewGames.length &&
+                        <HorizontalScroll>
+                            <div style={{display: 'flex'}}>
+                                {NewGames.map(newgames =>
+                                    <div key={newgames.id}
+                                         style={{width: 144, height: 130, textAlign: 'center', marginLeft: 5}}>
+                                        <img src={newgames.image}
+                                             style={{width: 135, height: 96}}/>
+                                        <Button>{newgames.price}</Button>
+                                    </div>)}
+                            </div>
+                        </HorizontalScroll>}
                     </Group>
+                    <Group separator="hide" header={<Header mode="secondary">Новинки</Header>}>
+                        {Games.length &&
+                        <HorizontalScroll>
+                            <div style={{display: 'flex'}}>
+                                {Games.map(games =>
+                                    <div key={games.id}
+                                         style={{width: 144, height: 130, textAlign: 'center', marginLeft: 5}}>
+                                        <img src={games.image}
+                                             style={{width: 135, height: 96}}/>
+                                        <Button>{games.price}</Button>
+                                    </div>)}
+                            </div>
+                        </HorizontalScroll>}
+                    </Group>
+                    <Group separator="hide" header={<Header mode="secondary">Лидеры продаж</Header>}>
+                        <CardScroll>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                        </CardScroll>
+                    </Group>
+                    <Group separator="hide" header={<Header mode="secondary">Скоро в продаже</Header>}>
+                        <CardScroll>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                        </CardScroll>
+                    </Group>
+                    <Group separator="hide" header={<Header mode="secondary">Топ GameReplay</Header>}>
+                        <CardScroll>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                            <Card size="s">
+                                <div style={{width: 144, height: 96}}/>
+                            </Card>
+                        </CardScroll>
+                    </Group>
+                </Panel>
+            </View>
+            <View id="categories" activePanel="categories">
+                <Panel id="categories">
+                    <PanelHeader>Категории</PanelHeader>
+                    {Thematics.length > 0 &&
+                    <List>
+                        {Thematics.map(thematic => <Cell key={thematic.id} expandable>{thematic.name}</Cell>)}
+                    </List>}
+                </Panel>
+            </View>
+            <View id="search" activePanel="search">
+                <Panel id="search">
+                    <PanelHeader>Поиск</PanelHeader>
+                    <Search value={''}/>
                 </Panel>
             </View>
             <View id="settings" activePanel="settings">
@@ -143,6 +228,4 @@ class App extends React.Component {
     }
 }
 
-
 export default App;
-
