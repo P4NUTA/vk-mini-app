@@ -2,24 +2,21 @@ import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 
 import {
-    Button,
+    Card,
+    CardScroll,
     Cell,
     Epic,
     Group,
     Header,
+    List,
     Panel,
     PanelHeader,
+    ScreenSpinner,
+    Search,
     Switch,
     Tabbar,
     TabbarItem,
     View,
-    ScreenSpinner,
-    List,
-    CardScroll,
-    Card,
-    Search,
-    Alert,
-    HorizontalScroll,
 } from "@vkontakte/vkui";
 
 import Icon28AllCategoriesOutline from '@vkontakte/icons/dist/28/all_categories_outline';
@@ -28,7 +25,8 @@ import Icon28Search from '@vkontakte/icons/dist/28/search';
 import Icon28More from '@vkontakte/icons/dist/28/more';
 
 import '@vkontakte/vkui/dist/vkui.css';
-import {Thematics, Games, NewGames} from "./objects/Static";
+import {Games, NewGames, Thematics} from "./objects/Static";
+import CardCarousel from "./objects/CardCarousel";
 
 class App extends React.Component {
     constructor(props) {
@@ -119,32 +117,10 @@ class App extends React.Component {
                 <Panel id="main">
                     <PanelHeader>GamePark</PanelHeader>
                     <Group separator="hide" header={<Header mode="secondary">Предзаказ</Header>}>
-                        {NewGames.length &&
-                        <HorizontalScroll>
-                            <div style={{display: 'flex'}}>
-                                {NewGames.map(newgames =>
-                                    <div key={newgames.id}
-                                         style={{width: 144, height: 130, textAlign: 'center', marginLeft: 5}}>
-                                        <img src={newgames.image}
-                                             style={{width: 135, height: 96}}/>
-                                        <Button>{newgames.price}</Button>
-                                    </div>)}
-                            </div>
-                        </HorizontalScroll>}
+                        <CardCarousel data={NewGames}/>
                     </Group>
                     <Group separator="hide" header={<Header mode="secondary">Новинки</Header>}>
-                        {Games.length &&
-                        <HorizontalScroll>
-                            <div style={{display: 'flex'}}>
-                                {Games.map(games =>
-                                    <div key={games.id}
-                                         style={{width: 144, height: 130, textAlign: 'center', marginLeft: 5}}>
-                                        <img src={games.image}
-                                             style={{width: 135, height: 96}}/>
-                                        <Button>{games.price}</Button>
-                                    </div>)}
-                            </div>
-                        </HorizontalScroll>}
+                        <CardCarousel data={Games}/>
                     </Group>
                     <Group separator="hide" header={<Header mode="secondary">Лидеры продаж</Header>}>
                         <CardScroll>

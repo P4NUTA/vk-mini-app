@@ -1,0 +1,42 @@
+.CardContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    /*align-items: center;*/
+    background: #ebecee;
+    margin: 0 8px 0 0;
+    padding-bottom: 8px;
+    border-radius: 8px;
+}
+
+.CardElement {
+    margin-right: 0 !important;
+}
+
+.CardElementImage {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.CardTitle {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 8px 0;
+    white-space: normal;
+    color: #030303;
+}
+
+.CardDescription {
+    font-size: 14px;
+    color: #828385;
+    padding: 4px 8px 8px;
+    /*height: 100%;*/
+}
+
+.CardButton {
+    margin: auto 8px 0;
+    max-height: 30px;
+}
