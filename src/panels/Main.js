@@ -28,7 +28,8 @@ class Main extends React.Component {
             <Group separator="hide" header={<Header mode="secondary">Скоро в продаже</Header>}>
                 <CardCarousel/>
             </Group>
-            <Group separator="hide" header={<Header mode="secondary">Топ GameReplay</Header>}>
+            <Group separator="hide" header={<Header mode="secondary">Топ GameReplay</Header>}
+                   style={{marginBottom: 16}}>
                 <CardCarousel/>
             </Group>
         </div>

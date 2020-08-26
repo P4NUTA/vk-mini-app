@@ -211,8 +211,10 @@ class App extends React.Component {
                         this.state.games.length ? <List>
                             {
                                 this.state.games.map(game => <SimpleCell
-                                    key={getRandomKey()} before={<Avatar src={game.image}/>}
-                                    description={game.description} onClick={() => this.openGame(game)}>
+                                    key={getRandomKey()} before={
+                                    <Avatar className="GameImageAvatar"
+                                            style={{'--avatar-image': `url(${game.image})`}}/>
+                                } description={game.description} onClick={() => this.openGame(game)}>
                                     {game.name}
                                 </SimpleCell>)
                             }
@@ -246,11 +248,13 @@ class App extends React.Component {
                             Фотоальбомы
                         </Cell>
                         <Separator/>
-                        <Cell asideContent={<Switch value={this.state.darkTheme} onClick={
-                            () => this.setTheme(this.state.darkTheme ? 'bright_light': 'space_gray')
-                        }/>}>
-                            Темная тема
-                        </Cell>
+                        <Cell asideContent={
+                            <Switch defaultChecked={this.state.darkTheme}
+                                    value={this.state.darkTheme}
+                                    onClick={() => this.setTheme(
+                                        this.state.darkTheme ? 'bright_light' : 'space_gray'
+                                    )}/>
+                        }>Темная тема</Cell>
                     </Group>
                 </Panel>
             </View>

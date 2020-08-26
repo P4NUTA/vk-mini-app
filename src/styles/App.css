@@ -1,3 +1,10 @@
 .PanelSpinner {
     height: calc(100vh - 105px) !important;
 }
+
+.GameImageAvatar > .Avatar__in > .Avatar__img{
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-image: var(--avatar-image);
+}
