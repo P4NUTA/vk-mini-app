@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
-    background: #ebecee;
+    background: var(--search_bar_field_background);
     margin: 0 8px 0 0;
     padding-bottom: 8px;
     border-radius: 8px;
@@ -27,7 +27,7 @@
 }
 
 .CardElementBackground {
-    background-color: #ebecee !important;
+    background-color: var(--search_bar_field_background) !important;
 }
 
 .CardTitle {
@@ -35,7 +35,7 @@
     font-weight: 500;
     padding: 8px 8px 0;
     white-space: normal;
-    color: #030303;
+    color: var(--text_primary);
 }
 
 .CardDescription {

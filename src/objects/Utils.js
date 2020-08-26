@@ -14,8 +14,8 @@ export function priceToBeauty(number) {
 }
 
 export function countToBeauty(number) {
-    if (number >= 5000) return `${Math.round(number / 1000)}K`
-    else if (number >= 1000) return `${Math.round(number / 100) / 10}K`
+    if (number >= 1000) return (`${Math.round(number / 100) / 10}K`)
+        .split('.').join(',')
     else return number
 }
 
@@ -40,7 +40,7 @@ export function getRandomKey() {
 
 export function resizeArray(array, size) {
     return getRange(Math.ceil(size / array.length))
-            .reduce(obj => obj.concat(array), [])
-            .slice(0, size);
+        .reduce(obj => obj.concat(array), [])
+        .slice(0, size);
 }
 

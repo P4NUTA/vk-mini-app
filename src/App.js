@@ -67,7 +67,7 @@ class App extends React.Component {
             if (type === 'VKWebAppUpdateConfig') {
                 const schemeAttribute = document.createAttribute('scheme');
                 schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-                // document.body.attributes.setNamedItem(schemeAttribute);
+                document.body.attributes.setNamedItem(schemeAttribute);
                 this.setState({themeName: schemeAttribute.value});
             } else if (type === 'VKWebAppGetUserInfoResult') {
                 this.setUser(data);
@@ -87,7 +87,7 @@ class App extends React.Component {
             games: convertPrices(Games, this.openGame),
             newGames: convertPrices(NewGames, this.openGame),
             thematics: Thematics,
-        }), 1000)
+        }), 5000)
     }
 
     setActivePanel(panel) {
