@@ -12,3 +12,111 @@
 .GameInfoRow {
     margin: 12px 0 0;
 }
+
+.GameScreenshotsInfoCell {
+    display: flex;
+    align-items: center;
+}
+
+.GameScreenshotsInfoCell > .MiniInfoCell__content {
+    font-size: 16px;
+}
+
+.GameScreenshotsInfoCell > .MiniInfoCell__after > button {
+    padding: 0 0 0 16px;
+}
+
+.GameScreenshotsInfoCell > .MiniInfoCell__after > button > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 4px 2px 4px 12px;
+}
+
+.GameScreenshotsInfoCell > .MiniInfoCell__after > button > div > div > p {
+    padding: 0;
+    margin: 0;
+}
+
+.GameScreenshotsInfoCell > .MiniInfoCell__after > button > div > div > div {
+    margin-left: 8px;
+}
+
+.GameShortScreenshotsGallery {
+    height: 224px;
+    margin-bottom: 0;
+}
+
+.GameShortScreenshotsGallery > .Gallery__viewport {
+    margin: 0;
+}
+
+.GameShortScreenshotsGallery > .Gallery__viewport > .Gallery__layer > .Gallery__slide > div {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.GameShortScreenshotsArrows {
+    display: flex;
+    margin-bottom: 58px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.GameShortScreenshotsArrows > button {
+    padding: 6px;
+}
+
+.GameShortScreenshotsArrows > button:nth-child(1) {
+    margin-right: 8px;
+}
+
+.GameBuyBottomLayout {
+    background: var(--background_content);
+}
+
+.GameShortGalleryLast {
+
+}
+
+.GameShortGalleryLast > .Placeholder {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.GameShortGalleryLast > .Placeholder > .Placeholder__in > .Placeholder__header {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.GameShortGalleryLast > .Placeholder > .Placeholder__in > .Placeholder__text {
+    color: #ffffff;
+}
+
+.GameShortGalleryShowAllEntry {
+    padding: 4px 12px;
+}
+
+.ScreenshotsLogoContainer {
+    height: fit-content;
+}
+
+.ScreenshotsLogoContainer > .Gallery__viewport > .Gallery__layer {
+    flex-flow: column;
+}
+
+.ScreenshotsLogoContainer > .Gallery__viewport > .Gallery__layer > .Gallery__slide > .ScreenshotsLogo {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-bottom: 12px solid var(--background_content);
+    height: 220px;
+}
+
+.ScreenshotsLogoContainer > .Gallery__viewport > .Gallery__layer > .Gallery__slide > .ScreenshotsReturn {
+    width: calc(100% - 24px);
+    border-bottom: 12px solid var(--background_content);
+}

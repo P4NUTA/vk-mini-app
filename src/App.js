@@ -34,6 +34,7 @@ import {Games, NewGames, Thematics} from "./objects/Static";
 import {convertPrices, getRandomKey} from "./objects/Utils";
 import Main from "./panels/Main";
 import Game from "./panels/Game";
+import Screenshots from "./panels/Screenshots";
 
 class App extends React.Component {
     constructor(props) {
@@ -104,7 +105,10 @@ class App extends React.Component {
     }
 
     setActivePanel(panel) {
-        this.setState({activePanel: panel})
+        this.setState({
+            lastPanels: this.state.lastPanels.concat([this.state.activePanel]),
+            activePanel: panel
+        })
     }
 
     setUser(user) {
@@ -184,7 +188,12 @@ class App extends React.Component {
                     <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
                         {this.state.currentGame.name}
                     </PanelHeader>
-                    <Game data={this.state.currentGame}/>
+                    <Game data={this.state.currentGame} go={this.go} back={this.back}/>
+
+                </Panel>
+                <Panel id="screenshots">
+                    <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Скриншоты</PanelHeader>
+                    <Screenshots />
                 </Panel>
             </View>
             <View id="categories" activePanel={this.state.activePanel}>
@@ -225,7 +234,11 @@ class App extends React.Component {
                     <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
                         {this.state.currentGame.name}
                     </PanelHeader>
-                    <Game data={this.state.currentGame}/>
+                    <Game data={this.state.currentGame} go={this.go} back={this.back}/>
+                </Panel>
+                <Panel id="screenshots">
+                    <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Скриншоты</PanelHeader>
+                    <Screenshots />
                 </Panel>
             </View>
             <View id="search" activePanel="search">
