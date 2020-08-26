@@ -14,6 +14,7 @@ import {
     PanelSpinner,
     ScreenSpinner,
     Search,
+    Separator,
     SimpleCell,
     Switch,
     Tabbar,
@@ -39,6 +40,9 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            darkTheme: false,
+            themeName: 'client_light',
+
             activeStory: 'main',
             activePanel: 'main',
             lastPanels: [],
@@ -65,10 +69,9 @@ class App extends React.Component {
 
         bridge.subscribe(({detail: {type, data}}) => {
             if (type === 'VKWebAppUpdateConfig') {
-                const schemeAttribute = document.createAttribute('scheme');
-                schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-                document.body.attributes.setNamedItem(schemeAttribute);
-                this.setState({themeName: schemeAttribute.value});
+                const themeName = data.scheme ? data.scheme : 'client_light';
+                this.setTheme(themeName);
+
             } else if (type === 'VKWebAppGetUserInfoResult') {
                 this.setUser(data);
                 this.setPopout(null);
@@ -80,6 +83,16 @@ class App extends React.Component {
 
     componentDidMount() {
         this.loadDataFromServer();
+    }
+
+    setTheme(themeName) {
+        const schemeAttribute = document.createAttribute('scheme');
+        schemeAttribute.value = themeName;
+        document.body.attributes.setNamedItem(schemeAttribute);
+        this.setState({
+            themeName: themeName,
+            darkTheme: themeName !== 'client_light' && themeName !== 'bright_light',
+        });
     }
 
     loadDataFromServer() {
@@ -231,6 +244,12 @@ class App extends React.Component {
                         </Cell>
                         <Cell asideContent={<Switch disabled/>}>
                             Фотоальбомы
+                        </Cell>
+                        <Separator/>
+                        <Cell asideContent={<Switch value={this.state.darkTheme} onClick={
+                            () => this.setTheme(this.state.darkTheme ? 'bright_light': 'space_gray')
+                        }/>}>
+                            Темная тема
                         </Cell>
                     </Group>
                 </Panel>
