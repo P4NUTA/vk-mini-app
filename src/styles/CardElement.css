@@ -2,23 +2,32 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
-    /*align-items: center;*/
     background: #ebecee;
     margin: 0 8px 0 0;
     padding-bottom: 8px;
     border-radius: 8px;
+    width: min-content;
 }
 
 .CardElement {
     margin-right: 0 !important;
+    border-radius: 8px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 
 .CardElementImage {
+    width: 144px !important;
+    height: 144px !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
+}
+
+.CardElementBackground {
+    background-color: #ebecee !important;
 }
 
 .CardTitle {
@@ -33,10 +42,38 @@
     font-size: 14px;
     color: #828385;
     padding: 4px 8px 8px;
-    /*height: 100%;*/
+}
+
+.CardButtonContainer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 0 8px;
+    margin: auto 0 0 !important;
+}
+
+.CardButtonContainer > .Button--lvl-secondary {
+    background-color: #fbfbfb;
+    color: #030303;
+}
+
+.CardButtonContainer > .Button--lvl-secondary > .Button__in > .Button__content > span {
+    color: #3f8ae0;
+}
+
+.CardButtonContainer > .Button--lvl-secondary > .Button__in > .Button__content > div > span {
+    color: #3f8ae0;
 }
 
 .CardButton {
-    margin: auto 8px 0;
-    max-height: 30px;
+    margin: 8px 0 0;
+    height: 100%;
+}
+
+.CardButtonSkeleton {
+    padding: 0 8px;
+}
+
+.CardButtonSkeleton > span {
+    border-radius: 10px;
 }

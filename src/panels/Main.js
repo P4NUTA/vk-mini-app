@@ -1,92 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card, CardScroll, Group, Header, Panel, PanelHeader, PanelHeaderBack} from '@vkontakte/vkui';
+import {Group, Header} from '@vkontakte/vkui';
+import CardCarousel from "../objects/CardCarousel";
 
 import '../styles/Main.css';
 
+
 class Main extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
     render() {
-        return <Panel id={this.props.id}>
-            <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home"/>}>
-                Main
-            </PanelHeader>
+        return <div>
+            <Group separator="hide" header={<Header mode="secondary">Предзаказ</Header>}>
+                <CardCarousel data={this.props.newGames}/>
+            </Group>
             <Group separator="hide" header={<Header mode="secondary">Новинки</Header>}>
-                <CardScroll>
-                    <Card size="s" title="Title">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                </CardScroll>
+                <CardCarousel data={this.props.games}/>
             </Group>
             <Group separator="hide" header={<Header mode="secondary">Лидеры продаж</Header>}>
-                <CardScroll>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                </CardScroll>
+                <CardCarousel/>
             </Group>
             <Group separator="hide" header={<Header mode="secondary">Скоро в продаже</Header>}>
-                <CardScroll>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                </CardScroll>
+                <CardCarousel/>
             </Group>
             <Group separator="hide" header={<Header mode="secondary">Топ GameReplay</Header>}>
-                <CardScroll>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                    <Card size="s">
-                        <div style={{width: 144, height: 96}}/>
-                    </Card>
-                </CardScroll>
+                <CardCarousel/>
             </Group>
-        </Panel>
+        </div>
     }
 }
 
 Main.propTypes = {
-    id: PropTypes.string.isRequired,
-    go: PropTypes.func.isRequired,
+    games: PropTypes.array.isRequired,
+    newGames: PropTypes.array.isRequired,
 };
 
 export default Main;

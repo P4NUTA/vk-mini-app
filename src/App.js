@@ -2,8 +2,7 @@ import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
 
 import {
-    Card,
-    CardScroll,
+    Avatar,
     Cell,
     Epic,
     Group,
@@ -11,22 +10,29 @@ import {
     List,
     Panel,
     PanelHeader,
+    PanelHeaderBack,
+    PanelSpinner,
     ScreenSpinner,
     Search,
+    SimpleCell,
     Switch,
     Tabbar,
     TabbarItem,
-    View,
+    View
 } from "@vkontakte/vkui";
+
+import '@vkontakte/vkui/dist/vkui.css';
+import './styles/App.css';
 
 import Icon28AllCategoriesOutline from '@vkontakte/icons/dist/28/all_categories_outline';
 import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
 import Icon28Search from '@vkontakte/icons/dist/28/search';
 import Icon28More from '@vkontakte/icons/dist/28/more';
 
-import '@vkontakte/vkui/dist/vkui.css';
 import {Games, NewGames, Thematics} from "./objects/Static";
-import CardCarousel from "./objects/CardCarousel";
+import {convertPrices, getRandomKey} from "./objects/Utils";
+import Main from "./panels/Main";
+import Game from "./panels/Game";
 
 class App extends React.Component {
     constructor(props) {
@@ -35,21 +41,33 @@ class App extends React.Component {
         this.state = {
             activeStory: 'main',
             activePanel: 'main',
+            lastPanels: [],
+
             user: null,
             popout: <ScreenSpinner size='large'/>,
+
+            thematic: '',
+            currentGame: {},
+
+            games: [],
+            newGames: [],
+            thematics: [],
         };
 
         this.go = this.go.bind(this);
-        this.setActivePanel = this.setActivePanel.bind(this);
+        this.back = this.back.bind(this);
         this.setUser = this.setUser.bind(this);
+        this.openGame = this.openGame.bind(this);
         this.setPopout = this.setPopout.bind(this);
         this.onStoryChange = this.onStoryChange.bind(this);
+        this.setActivePanel = this.setActivePanel.bind(this);
+        this.loadDataFromServer = this.loadDataFromServer.bind(this);
 
         bridge.subscribe(({detail: {type, data}}) => {
             if (type === 'VKWebAppUpdateConfig') {
                 const schemeAttribute = document.createAttribute('scheme');
                 schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-                document.body.attributes.setNamedItem(schemeAttribute);
+                // document.body.attributes.setNamedItem(schemeAttribute);
                 this.setState({themeName: schemeAttribute.value});
             } else if (type === 'VKWebAppGetUserInfoResult') {
                 this.setUser(data);
@@ -58,6 +76,18 @@ class App extends React.Component {
         });
 
         bridge.send('VKWebAppGetUserInfo');
+    }
+
+    componentDidMount() {
+        this.loadDataFromServer();
+    }
+
+    loadDataFromServer() {
+        setTimeout(() => this.setState({
+            games: convertPrices(Games, this.openGame),
+            newGames: convertPrices(NewGames, this.openGame),
+            thematics: Thematics,
+        }), 1000)
     }
 
     setActivePanel(panel) {
@@ -72,12 +102,31 @@ class App extends React.Component {
         this.setState({popout: popout})
     }
 
+    onStoryChange(e) {
+        const storyName = e.currentTarget.dataset.story;
+        this.setState({
+            activeStory: storyName,
+            activePanel: storyName,
+            lastPanels: []
+        })
+    }
+
+    openGame(data) {
+        this.setState({
+            currentGame: data, activePanel: 'game',
+            lastPanels: this.state.lastPanels.concat([this.state.activePanel])
+        })
+    }
+
     go(e) {
         this.setActivePanel(e.currentTarget.dataset.to);
     }
 
-    onStoryChange(e) {
-        this.setState({activeStory: e.currentTarget.dataset.story})
+    back() {
+        this.setState({
+            activePanel: this.state.lastPanels[this.state.lastPanels.length - 1],
+            lastPanels: this.state.lastPanels.slice(0, this.state.lastPanels.length - 1)
+        });
     }
 
     render() {
@@ -116,66 +165,52 @@ class App extends React.Component {
             <View id="main" activePanel={this.state.activePanel}>
                 <Panel id="main">
                     <PanelHeader>GamePark</PanelHeader>
-                    <Group separator="hide" header={<Header mode="secondary">Предзаказ</Header>}>
-                        <CardCarousel data={NewGames}/>
-                    </Group>
-                    <Group separator="hide" header={<Header mode="secondary">Новинки</Header>}>
-                        <CardCarousel data={Games}/>
-                    </Group>
-                    <Group separator="hide" header={<Header mode="secondary">Лидеры продаж</Header>}>
-                        <CardScroll>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                        </CardScroll>
-                    </Group>
-                    <Group separator="hide" header={<Header mode="secondary">Скоро в продаже</Header>}>
-                        <CardScroll>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                        </CardScroll>
-                    </Group>
-                    <Group separator="hide" header={<Header mode="secondary">Топ GameReplay</Header>}>
-                        <CardScroll>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                            <Card size="s">
-                                <div style={{width: 144, height: 96}}/>
-                            </Card>
-                        </CardScroll>
-                    </Group>
+                    <Main games={this.state.games} newGames={this.state.newGames}/>
+                </Panel>
+                <Panel id="game">
+                    <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
+                        {this.state.currentGame.name}
+                    </PanelHeader>
+                    <Game data={this.state.currentGame}/>
                 </Panel>
             </View>
-            <View id="categories" activePanel="categories">
+            <View id="categories" activePanel={this.state.activePanel}>
                 <Panel id="categories">
-                    <PanelHeader>Категории</PanelHeader>
-                    {Thematics.length > 0 &&
-                    <List>
-                        {Thematics.map(thematic => <Cell key={thematic.id} expandable>{thematic.name}</Cell>)}
-                    </List>}
+                    <PanelHeader>Категории игр</PanelHeader>
+                    {
+                        this.state.thematics.length ? <List>
+                            {this.state.thematics.map(thematic =>
+                                <SimpleCell key={thematic.id} expandable onClick={() => this.setState({
+                                    thematic: thematic, activePanel: 'category',
+                                    lastPanels: this.state.lastPanels.concat(['categories'])
+                                })}>
+                                    {thematic.name}
+                                </SimpleCell>)
+                            }
+                        </List> : <PanelSpinner className="PanelSpinner" size="large"/>
+                    }
+                </Panel>
+                <Panel id="category">
+                    <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
+                        {this.state.thematic.name}
+                    </PanelHeader>
+                    {
+                        this.state.games.length ? <List>
+                            {
+                                this.state.games.map(game => <SimpleCell
+                                    key={getRandomKey()} before={<Avatar src={game.image}/>}
+                                    description={game.description} onClick={() => this.openGame(game)}>
+                                    {game.name}
+                                </SimpleCell>)
+                            }
+                        </List> : <PanelSpinner size="large"/>
+                    }
+                </Panel>
+                <Panel id="game">
+                    <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
+                        {this.state.currentGame.name}
+                    </PanelHeader>
+                    <Game data={this.state.currentGame}/>
                 </Panel>
             </View>
             <View id="search" activePanel="search">

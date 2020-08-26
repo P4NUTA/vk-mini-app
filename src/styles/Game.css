@@ -1,0 +1,14 @@
+.GameLogoContainer {
+    height: 242px;
+}
+
+.GameLogo {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 100%;
+}
+
+.GameInfoRow {
+    margin: 12px 0 0;
+}
