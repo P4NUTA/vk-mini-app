@@ -87,7 +87,7 @@ class App extends React.Component {
             games: convertPrices(Games, this.openGame),
             newGames: convertPrices(NewGames, this.openGame),
             thematics: Thematics,
-        }), 5000)
+        }), 2000)
     }
 
     setActivePanel(panel) {
