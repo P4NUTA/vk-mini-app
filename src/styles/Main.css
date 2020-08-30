@@ -1,31 +1,8 @@
-.Persik {
-    display: block;
-    width: 30%;
-    max-width: 240px;
-    margin: 20px auto;
+.MainContainer {
+    padding-bottom: 12px;
 }
 
 .CardStyle {
     width: 144px;
     height: 96px;
-}
-
-
-.GameParkPlayIcon {
-    color: var(--dynamic_blue);
-    animation: blinker 5s ease-in-out infinite;
-}
-
-@keyframes blinker {
-    75% {
-        color: var(--dynamic_red);
-    }
-
-    50% {
-        color: var(--dynamic_green);
-    }
-
-    25% {
-        color: var(--dynamic_orange)
-    }
 }

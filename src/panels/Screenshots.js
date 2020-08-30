@@ -1,35 +1,72 @@
 import React from 'react';
-import {Gallery, Button, Div} from "@vkontakte/vkui";
-import { animateScroll } from 'react-scroll'
-
-import Icon24Up from '@vkontakte/icons/dist/24/up';
+import {FixedLayout, Group, Header} from "@vkontakte/vkui";
+import {animateScroll} from 'react-scroll'
 
 import '../styles/Screenshots.css';
+import SpeedDial from "@material-ui/lab/SpeedDial";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import PhotosBlock from "../objects/PhotosBlock";
+import Grow from "@material-ui/core/Grow";
+import {openImage} from "../objects/Utils";
+import InfiniteGallery from "../objects/InfiniteGallery";
+import Fade from "@material-ui/core/Fade";
 
 
 class Screenshots extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            bestImages: this.props.data.screenshots.slice(0, 3),
+            images: this.props.data.screenshots,
+            isOnTop: true,
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', (e) => {
+            const isOnTop = window.scrollY === 0;
+            if (this.state.isOnTop !== isOnTop) this.setState({isOnTop: isOnTop});
+        });
+    }
+
     render() {
-        return <div>
-            <Gallery className="ScreenshotsLogoContainer">
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/576bdd5f-0595-4a06-b6d2-fe3084bbd52c.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/ef1c7301-f528-44f8-842e-0ead1d87df34.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/fd70b6ec-5249-4d10-bb95-0a1246d947a7.jpg)'}}/>
-                <div className="ScreenshotsLogo"  style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/f7406cca-1b1f-4049-bce9-74cd5fd9de5c.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/576bdd5f-0595-4a06-b6d2-fe3084bbd52c.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/ef1c7301-f528-44f8-842e-0ead1d87df34.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/fd70b6ec-5249-4d10-bb95-0a1246d947a7.jpg)'}}/>
-                <div className="ScreenshotsLogo"  style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/f7406cca-1b1f-4049-bce9-74cd5fd9de5c.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/576bdd5f-0595-4a06-b6d2-fe3084bbd52c.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/ef1c7301-f528-44f8-842e-0ead1d87df34.jpg)'}}/>
-                <div className="ScreenshotsLogo" style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/fd70b6ec-5249-4d10-bb95-0a1246d947a7.jpg)'}}/>
-                <div className="ScreenshotsLogo"  style={{backgroundImage: 'url(https://u.kanobu.ru/screenshots/56/f7406cca-1b1f-4049-bce9-74cd5fd9de5c.jpg)'}}/>
-                <Div className="ScreenshotsReturn">
-                    <Button size="l" stretched before={<Icon24Up width={16} height={16}/>} onClick={animateScroll.scrollToTop}>
-                        Вернуться
-                    </Button>
-                </Div>
-            </Gallery>
-        </div>
+        return <Fade in={true}>
+            <div>
+                <Group className="ScreenshotsBestGalleryGroup"
+                       header={<Header>Лучшие скриншоты</Header>} separator="hide">
+                    <InfiniteGallery className="ScreenshotsBestGallery"
+                                     bullets="light"
+                                     slideWidth="calc(100% - 16px)"
+                                     timeout={3000}
+                                     images={this.state.bestImages}>
+                        {
+                            this.state.bestImages.map((url, index) => <div
+                                key={index} className="ScreenshotsBestImage"
+                                onClick={() => openImage(index, this.state.bestImages)}
+                                style={{backgroundImage: `url(${url})`}}/>)
+                        }
+                    </InfiniteGallery>
+                </Group>
+
+                <Group header={<Header indicator={this.state.images.length}>Все скриншоты</Header>}>
+                    <PhotosBlock images={this.state.images}/>
+                </Group>
+
+                <FixedLayout vertical="bottom">
+                    <Grow in={!this.state.isOnTop}>
+                        <SpeedDial
+                            className="ScreenshotsSpeedDial"
+                            ariaLabel="ArrowToTop"
+                            icon={<ArrowUpwardIcon/>}
+                            onClick={animateScroll.scrollToTop}
+                            open={false}
+                            direction="up"
+                        />
+                    </Grow>
+                </FixedLayout>
+            </div>
+        </Fade>
     }
 }
 

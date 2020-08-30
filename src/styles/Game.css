@@ -1,3 +1,7 @@
+.GameContainer {
+    padding-bottom: 72px;
+}
+
 .GameLogoContainer {
     height: 242px;
 }
@@ -45,7 +49,6 @@
 
 .GameShortScreenshotsGallery {
     height: 224px;
-    margin-bottom: 0;
 }
 
 .GameShortScreenshotsGallery > .Gallery__viewport {
@@ -76,6 +79,98 @@
 
 .GameBuyBottomLayout {
     background: var(--background_content);
+}
+
+.GameBuyBottomLayout > .FixedLayout__in > .GameBuyBottomContainer {
+    display: flex;
+}
+
+.GameBuyBottomLayout > .FixedLayout__in > .GameBuyBottomContainer > .GameBuyBottomBack {
+    margin-right: 8px;
+}
+
+.GameBuyBottomLayout > .FixedLayout__in > .GameBuyBottomContainer > .GameBuyBottomBack > .Button__in > .Button__content {
+    padding: 0;
+}
+
+.GameBuyBottomLayout > .FixedLayout__in > .GameBuyBottomContainer > .GameGoToBasket {
+    margin-left: 8px;
+}
+
+.GameAgeRestrict > .Avatar__in > .Avatar__children {
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.GameAgeRestrict18 > .Avatar__in > .Avatar__children {
+    background: var(--dynamic_red);
+}
+
+.GameAgeRestrict16 > .Avatar__in > .Avatar__children {
+    background: var(--dynamic_orange);
+}
+
+.GameAgeRestrict12 > .Avatar__in > .Avatar__children {
+    background: var(--dynamic_green);
+}
+
+.GameAgeRestrict0 > .Avatar__in > .Avatar__children {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.GamePlatform > .Avatar__in > .Avatar__img {
+    padding: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    background: transparent;
+    border-radius: 0 !important;
+}
+
+.GamePlatform > .Avatar__in > .Avatar__shadow {
+    display: none;
+}
+
+.MuiSpeedDial-directionUp {
+    flex-direction: column-reverse;
+}
+
+.MuiSpeedDial-directionUp .MuiSpeedDial-actions {
+    margin-bottom: -32px;
+    flex-direction: column-reverse;
+    padding-bottom: 48px;
+}
+
+.MuiSpeedDial-directionDown {
+    flex-direction: column;
+}
+
+.MuiSpeedDial-directionDown .MuiSpeedDial-actions {
+    margin-top: -32px;
+    padding-top: 48px;
+    flex-direction: column;
+}
+
+.MuiSpeedDial-directionLeft {
+    flex-direction: row-reverse;
+}
+
+.MuiSpeedDial-directionLeft .MuiSpeedDial-actions {
+    margin-right: -32px;
+    padding-right: 48px;
+    flex-direction: row-reverse;
+}
+
+.MuiSpeedDial-directionRight {
+    flex-direction: row;
+}
+
+.MuiSpeedDial-directionRight .MuiSpeedDial-actions {
+    margin-left: -32px;
+    padding-left: 48px;
+    flex-direction: row;
 }
 
 .GameShortGalleryLast {
@@ -120,3 +215,4 @@
     width: calc(100% - 24px);
     border-bottom: 12px solid var(--background_content);
 }
+

@@ -7,6 +7,13 @@
     padding-bottom: 8px;
     border-radius: 8px;
     width: min-content;
+    max-height: 290px;
+    position: relative;
+}
+
+.CardTextContainer {
+    max-height: 74px;
+    overflow: hidden;
 }
 
 .CardElement {
@@ -17,8 +24,8 @@
 }
 
 .CardElementImage {
-    width: 144px !important;
-    height: 144px !important;
+    width: 148px !important;
+    height: 148px !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -42,6 +49,9 @@
     font-size: 14px;
     color: #828385;
     padding: 4px 8px 8px;
+    white-space: normal;
+    overflow: hidden;
+    max-width: calc(144px - 16px);
 }
 
 .CardButtonContainer {
@@ -53,21 +63,34 @@
 }
 
 .CardButtonContainer > .Button--lvl-secondary {
-    background-color: #fbfbfb;
-    color: #030303;
+    /*background-color: #fbfbfb;*/
+    /*color: #030303;*/
 }
 
 .CardButtonContainer > .Button--lvl-secondary > .Button__in > .Button__content > span {
-    color: #3f8ae0;
+    /*color: #3f8ae0;*/
 }
 
 .CardButtonContainer > .Button--lvl-secondary > .Button__in > .Button__content > div > span {
-    color: #3f8ae0;
+    /*color: #3f8ae0;*/
+}
+
+.CardButtonPlatform {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    z-index: 3;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 1px 12px;
+    background: var(--search_bar_field_background);
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .CardButton {
     margin: 8px 0 0;
-    height: 100%;
+    min-height: 30px;
 }
 
 .CardButtonSkeleton {

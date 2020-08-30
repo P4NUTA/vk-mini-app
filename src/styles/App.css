@@ -1,10 +1,123 @@
+.CustomIconAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 12px 4px 0;
+    width: 40px;
+    height: 40px;
+}
+
+.CustomIconAvatar > * {
+    margin-left: 0;
+}
+
+.CustomIconContainer {
+    --icon-size: 28px;
+    --icon-padding-size: 8px;
+    --icon-color: var(--primary-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    padding: var(--icon-padding-size);
+}
+
+.CustomIconContainer > svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    color: var(--icon-color);
+}
+
+.CustomIconContainer > .Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--icon-size) !important;
+    height: var(--icon-size) !important;
+    padding: 0;
+}
+
+.CustomIconContainer > .Icon > svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    color: var(--icon-color);
+}
+
+svg {
+    fill: currentColor;
+}
+
+/*svg > * {*/
+/*    fill: currentColor;*/
+/*}*/
+
 .PanelSpinner {
     height: calc(100vh - 105px) !important;
 }
 
-.GameImageAvatar > .Avatar__in > .Avatar__img{
+.GameImageAvatar > .Avatar__in > .Avatar__img {
     background-position: center center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-image: var(--avatar-image);
+}
+
+.ServiceLoaderHeader > .FixedLayout > .FixedLayout__in > .PanelHeader__in > .PanelHeader__content {
+    font-weight: 600;
+}
+
+.ServiceLoader {
+    height: calc(100vh - 78px);
+}
+
+.GameParkPlayIcon {
+    color: var(--dynamic_blue);
+    animation: blinker 5s ease-in-out infinite;
+}
+
+.GoodsPlaceholder > .Placeholder__in > .Placeholder__text {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.GoodsPlaceholder > .Placeholder__in > .Placeholder__text > .Counter {
+    margin-top: 8px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--text_primary);
+    background: none;
+}
+
+.GoodsPlaceholder > .Placeholder__in > .Placeholder__text > .Counter > .Counter__in {
+    font-weight: 600;
+    font-size: 18px !important;
+}
+
+.CategoryCell > .SimpleCell__main {
+    width: 50%;
+}
+
+@keyframes blinker {
+    75% {
+        color: var(--dynamic_red);
+    }
+
+    50% {
+        color: var(--dynamic_green);
+    }
+
+    25% {
+        color: var(--dynamic_orange)
+    }
+}
+
+@media (max-width: 768px) {
+    body::-webkit-scrollbar {
+        display: none;
+    }
 }

@@ -1,36 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Cell, List, Panel, PanelHeader, PanelHeaderBack} from '@vkontakte/vkui';
-
-import '../styles/Main.css';
-import {Thematics} from "../objects/Static";
+import {List, PanelSpinner, SimpleCell} from '@vkontakte/vkui';
+import {Platforms} from "../objects/Static";
+import {getRandomKey, Icon} from "../objects/Utils";
+import Fade from "@material-ui/core/Fade";
 
 
 class Categories extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
     render() {
-        return <Panel id={this.props.id}>
-            <PanelHeader left={<PanelHeaderBack onClick={this.props.go} data-to="home"/>}>
-                Categories
-            </PanelHeader>
+        return <Fade in={true} timeout={600}>
             {
-                Thematics.length > 0 &&
-                <List>
-                    {Thematics.map(thematic => <Cell key={thematic.id}>{thematic.name}</Cell>)}
-                </List>
+                this.props.categories.length ? <List>
+                    {this.props.categories.map(category =>
+                        <SimpleCell key={getRandomKey()} after={
+                            Platforms[category.title] ? <Icon color="#555e6b" size={28} padding={4}>
+                                {Platforms[category.title]}</Icon> : null}
+                                    expandable onClick={() => this.props.openCategory(category)}>
+                            {category.title}
+                        </SimpleCell>)
+                    }
+                </List> : <PanelSpinner className="PanelSpinner" size="large"/>
             }
-        </Panel>
+        </Fade>
     }
 }
 
-Categories.propTypes = {
-    id: PropTypes.string.isRequired,
-    go: PropTypes.func.isRequired,
-};
+Categories.propTypes = {};
 
 export default Categories;

@@ -10,7 +10,9 @@ class CardCarousel extends React.Component {
         return <CardScroll>
             {
                 this.props.data && this.props.data.length ?
-                    this.props.data.map(element => <CardElement key={element.id} element={element}/>) :
+                    this.props.data.map(element => <CardElement
+                        key={element.id} element={element}
+                        isProductInBasket={() => this.props.isProductInBasket(element.id)}/>) :
                     getRange(10).map(index => <CardElement key={index} skeleton={true}/>)
             }
         </CardScroll>
