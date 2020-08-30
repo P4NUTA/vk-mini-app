@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {CardScroll} from "@vkontakte/vkui";
 
 import CardElement from "./CardElement";
-import {getRange} from "./Utils";
+import {getRange} from "../system/Utils";
 
 class CardCarousel extends React.Component {
     render() {

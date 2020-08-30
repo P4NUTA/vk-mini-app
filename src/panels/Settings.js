@@ -7,14 +7,14 @@ class Settings extends React.Component {
     render() {
         return <Fade in={true} timeout={600}>
             <Group header={<Header mode="secondary">Настройки приложения</Header>}>
-                <Cell asideContent={<Switch/>}>
-                    Комментарии к записям
+                <Cell asideContent={<Switch disabled/>}>
+                    Уведомления
+                </Cell>
+                <Cell asideContent={<Switch />}>
+                    Фильтрация игр
                 </Cell>
                 <Cell asideContent={<Switch defaultChecked/>}>
-                    Ссылки
-                </Cell>
-                <Cell asideContent={<Switch disabled/>}>
-                    Фотоальбомы
+                    Скриншоты
                 </Cell>
                 <Separator/>
                 <Cell asideContent={

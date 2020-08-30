@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Group, Header, Placeholder} from '@vkontakte/vkui';
-import {getRandomKey} from "../objects/Utils";
+import {getRandomKey} from "../system/Utils";
 import CardCarousel from "../objects/CardCarousel";
 import Icon36GameOutline from '@vkontakte/icons/dist/36/game_outline';
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {Avatar, Div, Search as SearchUI, SimpleCell} from "@vkontakte/vkui";
-import {getRandomKey} from "../objects/Utils";
+import {getRandomKey} from "../system/Utils";
 
 
 class Search extends React.Component {

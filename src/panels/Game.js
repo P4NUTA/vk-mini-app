@@ -16,10 +16,10 @@ import Icon20MentionOutline from '@vkontakte/icons/dist/20/mention_outline';
 
 
 import '../styles/Game.css';
-import {Icon, openImage} from "../objects/Utils";
+import {Icon, openImage} from "../system/Utils";
 import InfiniteGallery from "../objects/InfiniteGallery";
 import Fade from "@material-ui/core/Fade";
-import {Platforms} from "../objects/Static";
+import {Platforms} from "../system/Static";
 
 
 class Game extends React.Component {
@@ -84,16 +84,19 @@ class Game extends React.Component {
                     {`Платформа`}
                 </MiniInfoCell>
 
-                <MiniInfoCell before={<Icon20MentionOutline width={20} height={20}/>}>
-                    {`Жанр: ${game.genre}`}
+                <MiniInfoCell before={<Icon20MentionOutline width={20} height={20}/>}
+                              after={game.genre}>
+                    {`Жанр`}
                 </MiniInfoCell>
 
-                <MiniInfoCell before={<Icon28ChatsOutline width={20} height={20}/>}>
-                    {`Язык: ${game.language}`}
+                <MiniInfoCell before={<Icon28ChatsOutline width={20} height={20}/>}
+                              after={game.language}>
+                    {`Язык`}
                 </MiniInfoCell>
 
-                <MiniInfoCell before={<Icon20CommunityName width={20} height={20}/>}>
-                    {`Издатель: ${game.publisher}`}
+                <MiniInfoCell before={<Icon20CommunityName width={20} height={20}/>}
+                              after={game.publisher}>
+                    {`Издатель`}
                 </MiniInfoCell>
 
                 <MiniInfoCell before={<Icon20CalendarOutline width={20} height={20}/>}>

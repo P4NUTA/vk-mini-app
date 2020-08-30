@@ -1,11 +1,11 @@
 import React from "react";
 
-import {ReactComponent as Icon3DS} from '../img/3DS.svg';
-import {ReactComponent as IconPS3} from '../img/ps3.svg';
-import {ReactComponent as IconPS4} from '../img/ps4.svg';
-import {ReactComponent as IconSwitch} from '../img/switch.svg';
-import {ReactComponent as IconPC} from '../img/pc.svg';
-import {ReactComponent as IconXbox} from '../img/xbox.svg';
+import {ReactComponent as Icon3DS} from '../img/platforms/3DS.svg';
+import {ReactComponent as IconPS3} from '../img/platforms/ps3.svg';
+import {ReactComponent as IconPS4} from '../img/platforms/ps4.svg';
+import {ReactComponent as IconSwitch} from '../img/platforms/switch.svg';
+import {ReactComponent as IconPC} from '../img/platforms/pc.svg';
+import {ReactComponent as IconXbox} from '../img/platforms/xbox.svg';
 
 export const Thematics = [
     {id: 1, name: "PS4"},
@@ -133,7 +133,9 @@ export const TabsData = [
                 "age_limit": "18",
                 "article": "142055",
                 "logo": "https://www.gamepark.ru/upload/iblock/2f1/kupit_ufc_4_ps4.jpg",
-                "screenshots": [],
+                "screenshots": [
+                    "https://cdn.fishki.net/upload/post/2018/07/06/2643346/10.jpg",
+                ],
                 "url": "https://www.gamepark.ru/playstation4/games/4UFCPS4/"
             },
             {
@@ -148,7 +150,7 @@ export const TabsData = [
                 "publisher": "Sony",
                 "age_limit": "18",
                 "article": "142006",
-                "logo": "https://www.gamepark.ru/upload/iblock/f09/kupit_prizrak_cusimy_ghost_of_tsushima_ps4.jpg",
+                "logo": "https://img5.goodfon.ru/original/1920x1080/7/db/ghost-of-tsushima-sucker-punch-productions-prizrak-tsusimy.jpg",
                 "screenshots": [
                     "https://www.gamepark.ru/upload/iblock/a78/prizrak_cusimy_ghost_of_tsushima_ps4_skrinshot_1.jpg",
                     "https://www.gamepark.ru/upload/iblock/57a/prizrak_cusimy_ghost_of_tsushima_ps4_skrinshot_3.jpg",
@@ -171,7 +173,7 @@ export const TabsData = [
                 "publisher": "Sony",
                 "age_limit": "18",
                 "article": "141239",
-                "logo": "https://www.gamepark.ru/upload/iblock/0c1/kupit_odni_iz_nas_chast_ii_the_last_of_us_part_ii_ps4.jpg",
+                "logo": "https://i.playground.ru/p/5gbtdzPpKr1ZZuCDB1LzPQ.jpeg",
                 "screenshots": [
                     "https://www.gamepark.ru/upload/iblock/8d2/odni_iz_nas_chast_ii_the_last_of_us_part_ii_ps4_skrinshot_6.jpg",
                     "https://www.gamepark.ru/upload/iblock/4ee/odni_iz_nas_chast_ii_the_last_of_us_part_ii_ps4_skrinshot_3.jpg",
@@ -291,7 +293,7 @@ export const TabsData = [
                 "publisher": "Sony",
                 "age_limit": "18",
                 "article": "140356",
-                "logo": "https://www.gamepark.ru/upload/iblock/2ca/kupit_death_stranding_ps4.jpg",
+                "logo": "https://www.digiseller.ru/preview/669396/p1_2906417_809a4705.jpg",
                 "screenshots": [
                     "https://www.gamepark.ru/upload/iblock/486/death_stranding_ps4_skrinshot_1.jpg",
                     "https://www.gamepark.ru/upload/iblock/06a/death_stranding_ps4_skrinshot_4.jpg",

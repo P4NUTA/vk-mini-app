@@ -1,5 +1,5 @@
 import {Avatar, Counter, List, PanelSpinner, SimpleCell} from "@vkontakte/vkui";
-import {getRandomKey} from "../objects/Utils";
+import {getRandomKey} from "../system/Utils";
 import Fade from "@material-ui/core/Fade";
 import React from "react";
 

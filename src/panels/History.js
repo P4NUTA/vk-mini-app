@@ -1,6 +1,6 @@
 import React from "react";
 import {Avatar, Button, Group, Header, Placeholder, RichCell} from "@vkontakte/vkui";
-import {getRandomKey} from "../objects/Utils";
+import {getRandomKey} from "../system/Utils";
 import Fade from "@material-ui/core/Fade";
 
 import Icon56DocumentOutline from '@vkontakte/icons/dist/56/document_outline';
@@ -25,9 +25,14 @@ class History extends React.Component {
                                 after={product.priceLabel}
                                 actions={
                                     <React.Fragment>
-                                        <Button onClick={() => this.props.openGame(product, true)}>
+                                        <Button mode={this.props.isProductInBasket(product.id) ? 'primary': 'outline'}
+                                                onClick={() => this.props.switchProduct(product)}>
+                                            {this.props.isProductInBasket(product.id) ? 'Удалить': 'Добавить'}
+                                        </Button>
+                                        <Button mode="secondary" onClick={() => this.props.openGame(product, true)}>
                                             Открыть
                                         </Button>
+
                                     </React.Fragment>
                                 }
                             >{product.name}</RichCell>)

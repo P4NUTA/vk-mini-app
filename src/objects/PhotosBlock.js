@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/PhotosBlock.css';
-import {openImage} from "./Utils";
+import {openImage} from "../system/Utils";
 
 
 class PhotosBlock extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import {Avatar, Button, Counter, Group, Header, Placeholder, RichCell, SimpleCell} from "@vkontakte/vkui";
-import {getRandomKey, priceToBeauty} from "../objects/Utils";
+import {getRandomKey, priceToBeauty} from "../system/Utils";
 import Icon56GoodsCollection from '@vkontakte/icons/dist/56/goods_collection';
 import Icon28UserOutline from '@vkontakte/icons/dist/28/user_outline';
 import Icon28MarketOutline from '@vkontakte/icons/dist/28/market_outline';
@@ -14,13 +14,13 @@ class Profile extends React.Component {
         return <div>
             <Group>
                 <Header mode="secondary">Меню</Header>
-                <SimpleCell onClick={this.goNONE} data-to="account" expandable
+                <SimpleCell onClick={this.props.go} data-to="account" expandable
                             before={<Icon28UserOutline/>}>Аккаунт</SimpleCell>
-                <SimpleCell onClick={this.goNONE} data-to="orders" expandable
+                <SimpleCell onClick={this.props.go} data-to="orders" expandable
                             before={<Icon28MarketOutline/>}>Заказы</SimpleCell>
-                <SimpleCell onClick={this.goNONE} data-to="preorders" expandable
+                <SimpleCell onClick={this.props.go} data-to="preorders" expandable
                             before={<Icon28CubeBoxOutline/>}>Предзаказы</SimpleCell>
-                <SimpleCell onClick={this.goNONE} data-to="personal" expandable
+                <SimpleCell onClick={this.props.go} data-to="personal" expandable
                             before={<Icon28MoneyTransferOutline/>}>Личный счет</SimpleCell>
                 <SimpleCell onClick={this.props.go} data-to="history" expandable
                             before={<Icon28HistoryBackwardOutline/>}>История просмотров</SimpleCell>

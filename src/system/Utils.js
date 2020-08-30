@@ -62,8 +62,6 @@ export function countToBeauty(number) {
 
 export function convertPrices(data, callback) {
     return data.map(element => {
-        // element.playersLabel = countToBeauty(element.players)
-        // element.buyersLabel = countToBeauty(element.buyers)
         element.priceLabel = priceToBeauty(element.price)
 
         element.buttons = [{

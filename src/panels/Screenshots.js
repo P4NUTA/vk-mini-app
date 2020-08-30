@@ -7,7 +7,7 @@ import SpeedDial from "@material-ui/lab/SpeedDial";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PhotosBlock from "../objects/PhotosBlock";
 import Grow from "@material-ui/core/Grow";
-import {openImage} from "../objects/Utils";
+import {openImage} from "../system/Utils";
 import InfiniteGallery from "../objects/InfiniteGallery";
 import Fade from "@material-ui/core/Fade";
 

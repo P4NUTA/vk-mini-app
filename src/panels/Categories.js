@@ -1,7 +1,7 @@
 import React from 'react';
 import {List, PanelSpinner, SimpleCell} from '@vkontakte/vkui';
-import {Platforms} from "../objects/Static";
-import {getRandomKey, Icon} from "../objects/Utils";
+import {Platforms} from "../system/Static";
+import {getRandomKey, Icon} from "../system/Utils";
 import Fade from "@material-ui/core/Fade";
 
 

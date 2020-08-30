@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Card, Div} from "@vkontakte/vkui";
 import {Skeleton} from "@material-ui/lab";
 import Fade from '@material-ui/core/Fade';
-import {getRandomKey} from "./Utils";
+import {getRandomKey} from "../system/Utils";
 
 
 import '../styles/CardElement.css';

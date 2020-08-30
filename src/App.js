@@ -1,29 +1,34 @@
 import React from 'react';
 import bridge from '@vkontakte/vk-bridge';
-
-import {Epic, Panel, PanelHeader, PanelHeaderBack, ScreenSpinner, Tabbar, TabbarItem, View} from "@vkontakte/vkui";
+import Fade from "@material-ui/core/Fade";
 
 import '@vkontakte/vkui/dist/vkui.css';
 import './styles/App.css';
-import Icon28AllCategoriesOutline from '@vkontakte/icons/dist/28/all_categories_outline';
-import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
-import Icon28Search from '@vkontakte/icons/dist/28/search';
-import Icon28More from '@vkontakte/icons/dist/28/more';
-import Icon28UserCircleOutline from '@vkontakte/icons/dist/28/user_circle_outline';
 
-import {CategoriesData, Games, NewGames, TabsData, Thematics} from "./objects/Static";
-import {convertPrices, formatGame, SystemStorage} from "./objects/Utils";
+import {Epic, Panel, PanelHeader, PanelHeaderBack, ScreenSpinner, Tabbar, TabbarItem, View} from "@vkontakte/vkui";
+import {CategoriesData, Games, NewGames, TabsData, Thematics} from "./system/Static";
+import {convertPrices, formatGame, SystemStorage} from "./system/Utils";
+import ServiceLoader from "./objects/ServiceLoader";
 import Main from "./panels/Main";
 import Game from "./panels/Game";
 import Screenshots from "./panels/Screenshots";
-import ServiceLoader from "./objects/ServiceLoader";
-import Fade from "@material-ui/core/Fade";
 import Categories from "./panels/Categories";
 import Category from "./panels/Category";
 import Profile from "./panels/Profile";
 import History from "./panels/History";
 import Settings from "./panels/Settings";
 import Search from "./panels/Search";
+
+import Icon28AllCategoriesOutline from '@vkontakte/icons/dist/28/all_categories_outline';
+import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
+import Icon28Search from '@vkontakte/icons/dist/28/search';
+import Icon28More from '@vkontakte/icons/dist/28/more';
+import Icon28UserCircleOutline from '@vkontakte/icons/dist/28/user_circle_outline';
+import Account from "./panels/Account";
+import Orders from "./panels/Orders";
+import Preorders from "./panels/Preorders";
+import Personal from "./panels/Personal";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -131,7 +136,7 @@ class App extends React.Component {
                 category.games = convertPrices(category.games.map(game => formatGame(game)), this.openGame)
                 return category;
             })
-        }), 0)), 0)
+        }), 1000)), 1000)
     }
 
     setActivePanel(panel, story) {
@@ -299,9 +304,26 @@ class App extends React.Component {
                         <Profile products={this.state.products} go={this.go}
                                  switchProduct={this.switchProduct} openGame={this.openGame}/>
                     </Panel>
+                    <Panel id="account">
+                        <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Аккаунт</PanelHeader>
+                        <Account user={this.state.user} go={this.go}/>
+                    </Panel>
+                    <Panel id="orders">
+                        <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Заказы</PanelHeader>
+                        <Orders go={this.go}/>
+                    </Panel>
+                    <Panel id="preorders">
+                        <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Предзаказы</PanelHeader>
+                        <Preorders go={this.go}/>
+                    </Panel>
+                    <Panel id="personal">
+                        <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>Личный счет</PanelHeader>
+                        <Personal go={this.go}/>
+                    </Panel>
                     <Panel id="history">
                         <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>История просмотров</PanelHeader>
-                        <History history={this.state.history} go={this.go} openGame={this.openGame}/>
+                        <History history={this.state.history} go={this.go} openGame={this.openGame}
+                                 isProductInBasket={this.isProductInBasket} switchProduct={this.switchProduct}/>
                     </Panel>
                     <Panel id="game">
                         <PanelHeader left={<PanelHeaderBack onClick={this.back}/>}>
